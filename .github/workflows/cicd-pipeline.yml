@@ -5,7 +5,7 @@ on:
     branches: [ develop ]
 
 env:
-  ecr-repo: test
+  ecr-repo: skt-user01
   image-tag: orange
 
 jobs:
