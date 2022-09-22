@@ -170,7 +170,7 @@ alertmanager:
   ##
   config:
     global:
-      slack_api_url: 'https://hooks.slack.com/services/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'
+      slack_api_url: 'https://hooks.slack.com/services/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'
 
     route:
       receiver: 'default-receiver'
@@ -187,7 +187,7 @@ alertmanager:
     receivers:
       - name: 'default-receiver'
         slack_configs:
-          - channel: 'day4-devops-skt-user01'
+          - channel: 'day4-devops-skt-user01-1'
             text: "summary: {{ .CommonAnnotations.summary }}\ndescription: {{ .CommonAnnotations.description }}"
 #    global:
 #      resolve_timeout: 5m
