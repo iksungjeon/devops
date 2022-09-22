@@ -170,7 +170,7 @@ alertmanager:
   ##
   config:
     global:
-      slack_api_url: '<Slack Webhook URL>'
+      slack_api_url: 'https://hooks.slack.com/services/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'
 
     route:
       receiver: 'default-receiver'
@@ -187,7 +187,7 @@ alertmanager:
     receivers:
       - name: 'default-receiver'
         slack_configs:
-          - channel: 'test'
+          - channel: 'day4-devops-skt-user01'
             text: "summary: {{ .CommonAnnotations.summary }}\ndescription: {{ .CommonAnnotations.description }}"
 #    global:
 #      resolve_timeout: 5m
@@ -273,6 +273,7 @@ alertmanager:
     ingressClassName: alb
 
     annotations: {}
+
     labels: {}
 
     ## Redirect ingress to an additional defined port on the service
@@ -2162,13 +2163,16 @@ prometheus:
   #     someoneelse:$apr1$DMZX2Z4q$6SbQIfyuLQd.xmo/P0m2c.
 
   ingress:
-    enabled: false
+    enabled: true
 
     # For Kubernetes >= 1.18 you should specify the ingress-controller via the field ingressClassName
     # See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#specifying-the-class-of-an-ingress
     ingressClassName: alb
 
     annotations: {}
+      alb.ingress.kubernetes.io/scheme: internet-facing
+      alb.ingress.kubernetes.io/target-type: ip
+      alb.ingress.kubernetes.io/subnets: subnet-0d09365f711c00e81, subnet-0989fc3f0ae13f6c2
     labels: {}
 
     ## Redirect ingress to an additional defined port on the service
@@ -2184,7 +2188,7 @@ prometheus:
     ## Paths to use for ingress rules - one path should match the prometheusSpec.routePrefix
     ##
     paths: []
-    # - /
+    - /
 
     ## For Kubernetes >= 1.18 you should specify the pathType (determines how Ingress paths should be matched)
     ## See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#better-path-matching-with-path-types
